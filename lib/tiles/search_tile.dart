@@ -12,15 +12,14 @@ class SearchTile extends StatefulWidget {
 typedef DestinationEntry = DropdownMenuEntry<Destination>;
 
 enum Destination {
-  cairo('Cairo', "Cairo"),
-  alex('Alex', "Alex"),
-  hurghada('Hurghada', "Hurghada"),
-  marsaala('Marsa Alam', 'Marsa Alam'),
-  aswan("Aswan", "Aswan");
+  cairo('Cairo'),
+  alex('Alex'),
+  hurghada('Hurghada'),
+  marsaala('Marsa Alam'),
+  aswan("Aswan");
 
-  const Destination(this.label, this.resort);
+  const Destination(this.label);
   final String label;
-  final String resort;
 
   static final List<DestinationEntry> entries =
       UnmodifiableListView<DestinationEntry>(
@@ -28,6 +27,10 @@ enum Destination {
       (Destination state) => DestinationEntry(
         value: state,
         label: state.label,
+        enabled: state.label != 'Cairo',
+        style: MenuItemButton.styleFrom(
+          foregroundColor: Colors.white,
+        ),
       ),
     ),
   );
@@ -51,6 +54,7 @@ class _SearchTileState extends State<SearchTile> {
         child: Column(
           children: [
             DropdownMenu<Destination>(
+              initialSelection: Destination.cairo,
               width: MediaQuery.of(context).size.width - 50,
               controller: destinationController,
               enableFilter: true,
@@ -58,7 +62,7 @@ class _SearchTileState extends State<SearchTile> {
               leadingIcon: const Icon(Icons.search),
               label: const Text('State'),
               inputDecorationTheme: const InputDecorationTheme(
-                filled: true,
+                filled: false,
                 fillColor: Colors.transparent,
                 contentPadding: EdgeInsets.symmetric(vertical: 5.0),
               ),
