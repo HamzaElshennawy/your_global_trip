@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 
 class SearchTile extends StatefulWidget {
@@ -27,7 +26,7 @@ enum Destination {
       (Destination state) => DestinationEntry(
         value: state,
         label: state.label,
-        enabled: state.label != 'Cairo',
+        enabled: true,
         style: MenuItemButton.styleFrom(
           foregroundColor: Colors.white,
         ),
@@ -39,14 +38,39 @@ enum Destination {
 class _SearchTileState extends State<SearchTile> {
   final TextEditingController destinationController = TextEditingController();
   final TextEditingController resortController = TextEditingController();
-  Destination? selectedDistenation;
-  Destination? selectedResort;
+
+  Destination? selectedDestination;
+  String? selectedResort;
+
+  // Mapping destinations to their available resorts
+  final Map<Destination, List<String>> resortsMap = {
+    Destination.cairo: ['Hotel 1 in Cairo', 'Hotel 2 in Cairo'],
+    Destination.alex: ['Hotel 1 in Alex', 'Hotel 2 in Alex'],
+    Destination.hurghada: ['Hotel 1 in Hurghada', 'Hotel 2 in Hurghada'],
+    Destination.marsaala: ['Hotel 1 in Marsa Alam', 'Hotel 2 in Marsa Alam'],
+    Destination.aswan: ['Hotel 1 in Aswan', 'Hotel 2 in Aswan'],
+  };
+
+  List<DropdownMenuEntry<String>> getAvailableResorts() {
+    final availableResorts = resortsMap[selectedDestination] ?? [];
+    return availableResorts.map((resort) {
+      return DropdownMenuEntry(
+        value: resort,
+        label: resort,
+        enabled: true,
+        style: MenuItemButton.styleFrom(
+          foregroundColor: Colors.black,
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
         width: MediaQuery.of(context).size.width - 50,
-        height: 200,
+        height: 250,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -68,12 +92,14 @@ class _SearchTileState extends State<SearchTile> {
               ),
               onSelected: (Destination? state) {
                 setState(() {
-                  selectedDistenation = state;
+                  selectedDestination = state;
+                  resortController.clear();
+                  selectedResort = null;
                 });
               },
               dropdownMenuEntries: Destination.entries,
             ),
-            DropdownMenu<Destination>(
+            DropdownMenu<String>(
               width: MediaQuery.of(context).size.width - 50,
               controller: resortController,
               enableFilter: true,
@@ -85,12 +111,12 @@ class _SearchTileState extends State<SearchTile> {
                 fillColor: Colors.transparent,
                 contentPadding: EdgeInsets.symmetric(vertical: 5.0),
               ),
-              onSelected: (Destination? state) {
+              onSelected: (String? resort) {
                 setState(() {
-                  selectedResort = state;
+                  selectedResort = resort;
                 });
               },
-              dropdownMenuEntries: Destination.entries,
+              dropdownMenuEntries: getAvailableResorts(),
             ),
           ],
         ),

@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
     ];
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Your Global Trip",
+        title: "",
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -62,12 +62,12 @@ class HomePage extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: Stack(alignment: Alignment.center, children: [
-                          Image.network(
-                            height: double.infinity,
-                            width: double.infinity,
-                            locations[index][1],
-                            fit: BoxFit.cover,
-                          ),
+                          //Image.network(
+                          //  height: double.infinity,
+                          //  width: double.infinity,
+                          //  locations[index][1],
+                          //  fit: BoxFit.cover,
+                          //),
                           Center(
                             child: Text(
                               locations[index][0],
