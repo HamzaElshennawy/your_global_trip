@@ -70,19 +70,20 @@ class _SearchTileState extends State<SearchTile> {
     return Center(
       child: Container(
         width: MediaQuery.of(context).size.width - 50,
-        height: 250,
+        height: 200,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             DropdownMenu<Destination>(
               initialSelection: Destination.cairo,
               width: MediaQuery.of(context).size.width - 50,
               controller: destinationController,
               enableFilter: true,
-              requestFocusOnTap: true,
+              requestFocusOnTap: false,
               leadingIcon: const Icon(Icons.search),
               label: const Text('State'),
               inputDecorationTheme: const InputDecorationTheme(
@@ -103,7 +104,7 @@ class _SearchTileState extends State<SearchTile> {
               width: MediaQuery.of(context).size.width - 50,
               controller: resortController,
               enableFilter: true,
-              requestFocusOnTap: true,
+              requestFocusOnTap: false,
               leadingIcon: const Icon(Icons.search),
               label: const Text('Resort'),
               inputDecorationTheme: const InputDecorationTheme(
@@ -117,6 +118,23 @@ class _SearchTileState extends State<SearchTile> {
                 });
               },
               dropdownMenuEntries: getAvailableResorts(),
+            ),
+            ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width - 50,
+              child: MaterialButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                onPressed: () => {
+                  print("Search Pressed"),
+                },
+                child: const Text(
+                  'Search',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/tiles/custom_appbar.dart';
+import 'package:your_global_trip/tiles/location_list_tile.dart';
 import 'package:your_global_trip/tiles/search_tile.dart';
 
 class HomePage extends StatelessWidget {
@@ -43,42 +44,20 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 28),
               ),
               SearchTile(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 100,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: GridView.count(
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    crossAxisCount: 2,
-                    children: List.generate(locations.length, (index) {
-                      return Center(
-                          child: Container(
-                        clipBehavior: Clip.hardEdge,
-                        width: 180,
-                        height: 180,
-                        decoration: BoxDecoration(
-                          color: Colors.cyan,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Stack(alignment: Alignment.center, children: [
-                          //Image.network(
-                          //  height: double.infinity,
-                          //  width: double.infinity,
-                          //  locations[index][1],
-                          //  fit: BoxFit.cover,
-                          //),
-                          Center(
-                            child: Text(
-                              locations[index][0],
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 30),
-                            ),
-                          ),
-                        ]),
-                      ));
-                    }),
-                  ),
+              Center(
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  children:
+                      List.generate(locations.length, growable: true, (index) {
+                    return LocationListTile(
+                      locationImageUrl: locations[index][1],
+                      locationName: locations[index][0],
+                    );
+                  }),
                 ),
               ),
             ],
