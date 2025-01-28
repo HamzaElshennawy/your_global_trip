@@ -28,7 +28,7 @@ enum Destination {
         label: state.label,
         enabled: true,
         style: MenuItemButton.styleFrom(
-          foregroundColor: Colors.white,
+          foregroundColor: Colors.black,
         ),
       ),
     ),
@@ -67,29 +67,45 @@ class _SearchTileState extends State<SearchTile> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Center(
       child: Container(
-        width: MediaQuery.of(context).size.width - 50,
-        height: 200,
+        margin: EdgeInsets.symmetric(vertical: 20),
+        width: screenWidth - 40,
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 10,
+              spreadRadius: 2,
+              offset: const Offset(0, 5),
+            ),
+          ],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
           children: [
             DropdownMenu<Destination>(
-              initialSelection: Destination.cairo,
-              width: MediaQuery.of(context).size.width - 50,
+              initialSelection: null,
+              width: screenWidth - 80,
               controller: destinationController,
               enableFilter: true,
               requestFocusOnTap: false,
-              leadingIcon: const Icon(Icons.search),
-              label: const Text('State'),
-              inputDecorationTheme: const InputDecorationTheme(
-                filled: false,
-                fillColor: Colors.transparent,
-                contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+              leadingIcon: const Icon(Icons.location_on),
+              label: const Text(
+                'Select Destination',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              inputDecorationTheme: InputDecorationTheme(
+                filled: true,
+                fillColor: Colors.grey[100]!,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderSide: BorderSide.none,
+                ),
               ),
               onSelected: (Destination? state) {
                 setState(() {
@@ -99,40 +115,83 @@ class _SearchTileState extends State<SearchTile> {
                 });
               },
               dropdownMenuEntries: Destination.entries,
+              menuStyle: MenuStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.white),
+                elevation: WidgetStatePropertyAll(8),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                padding: WidgetStatePropertyAll(
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                ),
+              ),
             ),
+            const SizedBox(height: 20),
             DropdownMenu<String>(
-              width: MediaQuery.of(context).size.width - 50,
+              width: screenWidth - 80,
               controller: resortController,
               enableFilter: true,
               requestFocusOnTap: false,
-              leadingIcon: const Icon(Icons.search),
-              label: const Text('Resort'),
-              inputDecorationTheme: const InputDecorationTheme(
+              leadingIcon: const Icon(Icons.hotel),
+              label: const Text(
+                'Select Resort',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              inputDecorationTheme: InputDecorationTheme(
                 filled: true,
-                fillColor: Colors.transparent,
-                contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+                fillColor: Colors.grey[100]!,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  borderSide: BorderSide.none,
+                ),
               ),
               onSelected: (String? resort) {
                 setState(() {
                   selectedResort = resort;
                 });
               },
-              dropdownMenuEntries: getAvailableResorts(),
+              dropdownMenuEntries:
+                  selectedDestination != null ? getAvailableResorts() : [],
+              menuStyle: MenuStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.white),
+                elevation: WidgetStatePropertyAll(8),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                padding: WidgetStatePropertyAll(
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                ),
+              ),
+              enabled: selectedDestination?.index !=
+                  null, // Disable if no destination
             ),
-            ButtonTheme(
-              minWidth: MediaQuery.of(context).size.width - 50,
-              child: MaterialButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                onPressed: () => {
-                  print("Search Pressed"),
-                },
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  foregroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 14, horizontal: 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 5,
+                ),
+                onPressed:
+                    (selectedDestination != null && selectedResort != null)
+                        ? () {
+                            print("Search Pressed");
+                          }
+                        : null, // Disable button if no destination is selected
                 child: const Text(
                   'Search',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),
             ),

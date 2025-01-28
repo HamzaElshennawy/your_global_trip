@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
                 label: "History",
                 activeIcon: Icon(Icons.history)),
           ],
-          selectedItemColor: Colors.blue,
+          selectedItemColor: Colors.orange,
           currentIndex: _selectedPageIndex,
           onTap: (index) => {
             setState(() {

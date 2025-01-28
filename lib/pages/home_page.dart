@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_global_trip/pages/destination_page.dart';
 import 'package:your_global_trip/tiles/custom_appbar.dart';
 import 'package:your_global_trip/tiles/location_list_tile.dart';
 import 'package:your_global_trip/tiles/search_tile.dart';
@@ -39,11 +40,31 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Choose your distenation",
-                style: TextStyle(fontSize: 28),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                child: Text(
+                  "Choose your distenation",
+                  style: TextStyle(fontSize: 28),
+                ),
               ),
               SearchTile(),
+              Container(
+                margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
+                child: Text(
+                  "Empower your vacation in two minutes",
+                  style: TextStyle(fontSize: 32, color: Colors.orange),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 15, left: 15),
+                child: Text(
+                  "High value daily trips in one touch",
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.w200),
+                ),
+              ),
               Center(
                 child: GridView.count(
                   physics: NeverScrollableScrollPhysics(),
@@ -53,9 +74,21 @@ class HomePage extends StatelessWidget {
                   shrinkWrap: true,
                   children:
                       List.generate(locations.length, growable: true, (index) {
-                    return LocationListTile(
-                      locationImageUrl: locations[index][1],
-                      locationName: locations[index][0],
+                    return GestureDetector(
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DestinationPage(
+                              destinationIndex: index,
+                            ),
+                          ),
+                        )
+                      },
+                      child: LocationListTile(
+                        locationImageUrl: locations[index][1],
+                        locationName: locations[index][0],
+                      ),
                     );
                   }),
                 ),
