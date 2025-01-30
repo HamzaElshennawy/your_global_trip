@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_global_trip/pages/trip_details_page.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({super.key});
@@ -55,7 +56,13 @@ class PlaceCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TripDetailsPage(),
+                        ));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,

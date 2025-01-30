@@ -14,6 +14,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: CustomAppBar(title: "Choose Your Destination"),
       body: Container(
+        margin: EdgeInsets.all(0),
         child: Center(
           child: const Text("Search Page is here"),
         ),

@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SearchTile extends StatefulWidget {
@@ -94,7 +95,7 @@ class _SearchTileState extends State<SearchTile> {
               controller: destinationController,
               enableFilter: true,
               requestFocusOnTap: false,
-              leadingIcon: const Icon(Icons.location_on),
+              trailingIcon: const Icon(Icons.location_on),
               label: const Text(
                 'Select Destination',
                 style: TextStyle(fontWeight: FontWeight.w600),
@@ -134,7 +135,7 @@ class _SearchTileState extends State<SearchTile> {
               controller: resortController,
               enableFilter: true,
               requestFocusOnTap: false,
-              leadingIcon: const Icon(Icons.hotel),
+              trailingIcon: const Icon(Icons.hotel),
               label: const Text(
                 'Select Resort',
                 style: TextStyle(fontWeight: FontWeight.w600),
@@ -169,7 +170,10 @@ class _SearchTileState extends State<SearchTile> {
               enabled: selectedDestination?.index !=
                   null, // Disable if no destination
             ),
-            const SizedBox(height: 30),
+            //const SizedBox(height: 30),
+            //DatePickerDialog(
+            //    firstDate: DateTime.now(), lastDate: DateTime(2026)),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -186,7 +190,9 @@ class _SearchTileState extends State<SearchTile> {
                 onPressed:
                     (selectedDestination != null && selectedResort != null)
                         ? () {
-                            print("Search Pressed");
+                            if (kDebugMode) {
+                              print("Search Pressed");
+                            }
                           }
                         : null, // Disable button if no destination is selected
                 child: const Text(
