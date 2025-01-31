@@ -12,22 +12,34 @@ class HomePage extends StatelessWidget {
     var locations = [
       [
         "Hurghada",
-        "https://booking.yourglobaltrip.com/images/HRG/2 HRG GIFT.jpg"
+        "https://booking.yourglobaltrip.com/images/HRG/2 HRG GIFT.jpg",
+        "Get to know the city and its areas. Dinner is included.",
       ],
       [
         "Marsa Alam",
-        "https://booking.yourglobaltrip.com/images/RMF/28 RMF SATA.jpg"
+        "https://booking.yourglobaltrip.com/images/RMF/28 RMF SATA.jpg",
+        "Experience the local atmosphere in one of the oldest Red Sea towns. The town was part of the old pilgrim route to Mecca.",
       ],
       [
         "Sharm Al-Sheikh",
-        "https://booking.yourglobaltrip.com/images/SSH/46 SSH CIT2.jpg"
+        "https://booking.yourglobaltrip.com/images/SSH/46 SSH CIT2.jpg",
+        "Get to know the city and its areas. Your guide will show you places of interest and landmarks in Sharm.",
       ],
-      ["Aswan", "https://booking.yourglobaltrip.com/images/ASW/80 NUBIAN.jpg"],
+      [
+        "Aswan",
+        "https://booking.yourglobaltrip.com/images/ASW/80 NUBIAN.jpg",
+        "A half-day visit in Aswan to the Philae Temple, the High Dam and the unfinished obelisk at the granite quarry. ",
+      ],
       [
         "Cairo",
-        "https://booking.yourglobaltrip.com/images/CAI/83 CAI SOPY.jpg"
+        "https://booking.yourglobaltrip.com/images/CAI/83 CAI SOPY.jpg",
+        "Evening tour to the Sound & Light show by the Pyramids of Giza including transport, and entry fees.",
       ],
-      ["Luxor", "https://booking.yourglobaltrip.com/images/LXR/69 WEST1.jpg"],
+      [
+        "Luxor",
+        "https://booking.yourglobaltrip.com/images/LXR/69 WEST1.jpg",
+        "Float in a hot air balloon over the Nile and the west bank of Luxor at sunrise.",
+      ],
     ];
     return Scaffold(
       appBar: CustomAppBar(
@@ -64,6 +76,7 @@ class HomePage extends StatelessWidget {
                     return LocationCard(
                       locationName: locations[index][0],
                       locationImageUrl: locations[index][1],
+                      locationDescription: locations[index][2],
                       onTap: () => {
                         Navigator.push(
                           context,

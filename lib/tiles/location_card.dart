@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class LocationCard extends StatelessWidget {
   final String locationName;
   final String locationImageUrl;
+  final String locationDescription;
   final VoidCallback onTap;
 
   const LocationCard({
     required this.locationName,
     required this.locationImageUrl,
+    required this.locationDescription,
     required this.onTap,
     super.key,
   });
@@ -47,12 +49,17 @@ class LocationCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Sound and light show at The Pyramids",
-                    textWidthBasis: TextWidthBasis.parent,
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
+                  FractionallySizedBox(
+                    widthFactor: 0.8,
+                    child: Text(
+                      maxLines: 2,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      locationDescription,
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Row(
