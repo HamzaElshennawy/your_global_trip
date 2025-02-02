@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/pages/destination_page.dart';
+import 'package:your_global_trip/tiles/city_card.dart';
 import 'package:your_global_trip/tiles/custom_appbar.dart';
 import 'package:your_global_trip/tiles/search_tile.dart';
 import 'package:your_global_trip/tiles/location_card.dart'; // Import the new component
@@ -60,6 +61,39 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SearchTile(),
+              Container(
+                margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
+                child: Text(
+                  "Available Destinations",
+                  style: TextStyle(fontSize: 32, color: Colors.black),
+                ),
+              ),
+              Center(
+                child: SizedBox(
+                  height: 165,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: locations.length,
+                    itemBuilder: (context, index) {
+                      return CityCard(
+                        locationName: locations[index][0],
+                        locationImageUrl: locations[index][1],
+                        onTap: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DestinationPage(
+                                destinationIndex: index,
+                              ),
+                            ),
+                          )
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
                 child: Text(
