@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
+  final bool? logoEnabled;
   const CustomAppBar({
     this.title,
+    this.logoEnabled,
     super.key,
   });
 
@@ -11,11 +13,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: title != null ? Text(title!) : Text(""),
-      leading: Image.asset(
-        "assets/icon/logo.png",
-        width: 200,
-        fit: BoxFit.fitWidth,
-      ),
+      leading: logoEnabled != null
+          ? Image.asset(
+              "assets/icon/logo.png",
+              width: 200,
+              fit: BoxFit.fitWidth,
+            )
+          : null,
       leadingWidth: 200,
       elevation: 0,
       scrolledUnderElevation: 0,

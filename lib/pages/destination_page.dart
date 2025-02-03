@@ -48,7 +48,9 @@ class DestinationPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(
+        logoEnabled: false,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 24.0, left: 16, right: 16),

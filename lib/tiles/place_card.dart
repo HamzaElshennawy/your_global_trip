@@ -16,11 +16,17 @@ class PlaceCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          //TODO: add placeholder image if network is not available
+          //TODO: show error if network is not available for the user, saying "Failed to connect to server. Please try again"
           Image.network(
             "https://booking.yourglobaltrip.com/images/CAI/CAI%20MTUL.jpg",
             height: 200,
             width: double.infinity,
             fit: BoxFit.fitWidth,
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              return const Text('ð¢');
+            },
           ),
           Container(
             padding: EdgeInsets.only(left: 10, right: 10, bottom: 15),

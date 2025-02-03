@@ -4,6 +4,7 @@ import 'package:your_global_trip/pages/home_page.dart';
 import 'package:your_global_trip/pages/saved_page.dart';
 import 'package:your_global_trip/pages/search_page.dart';
 import 'package:your_global_trip/providers/app_bar_theme.dart';
+import 'package:your_global_trip/tiles/custom_appbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: CustomAppBar(
+          logoEnabled: true,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 30,
           iconSize: 28,
