@@ -16,16 +16,38 @@ class PlaceCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //TODO: add placeholder image if network is not available
-          //TODO: show error if network is not available for the user, saying "Failed to connect to server. Please try again"
-          Image.network(
-            "https://booking.yourglobaltrip.com/images/CAI/CAI%20MTUL.jpg",
+          FadeInImage.assetNetwork(
+            image:
+                "https://booking.yourglobaltrip.com/images/CAI/CAI%20MTUL.jpg",
+            placeholder: "assets/icon/logo.png",
             height: 200,
             width: double.infinity,
             fit: BoxFit.fitWidth,
-            errorBuilder: (BuildContext context, Object exception,
+            imageErrorBuilder: (BuildContext context, Object exception,
                 StackTrace? stackTrace) {
-              return const Text('ð¢');
+              return Container(
+                padding: EdgeInsets.all(2),
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                child: Column(
+                  spacing: 15,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Unable to connect to server. Please try again.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.portable_wifi_off,
+                      size: 28,
+                    ),
+                  ],
+                ),
+              );
             },
           ),
           Container(
