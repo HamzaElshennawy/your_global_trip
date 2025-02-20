@@ -1,0 +1,2 @@
+D:/Work/Your Global Trip/your_global_trip/android/app/.cxx/RelWithDebInfo/3i4c3g4x/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Work/Your Global Trip/your_global_trip/android/app/.cxx/RelWithDebInfo/3i4c3g4x/armeabi-v7a/CMakeFiles/rebuild_cache.dir
