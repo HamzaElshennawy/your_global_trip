@@ -7,7 +7,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: false,
-      backgroundColor: Colors.orange,
+      backgroundColor: Color(0xFFFF7B26),
     ),
   );
 
@@ -17,7 +17,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: false,
-      backgroundColor: Colors.orange,
+      backgroundColor: Color(0xFFFF7B26),
     ),
   );
 }
