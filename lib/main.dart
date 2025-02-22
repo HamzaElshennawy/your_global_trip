@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/pages/history_page.dart';
 import 'package:your_global_trip/pages/home_page.dart';
+import 'package:your_global_trip/pages/login_page.dart';
 import 'package:your_global_trip/pages/saved_page.dart';
 import 'package:your_global_trip/pages/search_page.dart';
 import 'package:your_global_trip/providers/app_bar_theme.dart';
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
     const SearchPage(),
     const SavedPage(),
     const HistoryPage(),
+    const AuthPage(),
   ];
   var _selectedPageIndex = 0;
   @override
@@ -30,9 +32,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: CustomAppBar(
-          logoEnabled: true,
-        ),
+        //appBar: CustomAppBar(
+        //  logoEnabled: true,
+        //),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 30,
           iconSize: 28,
@@ -57,6 +59,10 @@ class _MyAppState extends State<MyApp> {
                 icon: Icon(Icons.history_outlined),
                 label: "History",
                 activeIcon: Icon(Icons.history)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_2_outlined),
+                label: "Login",
+                activeIcon: Icon(Icons.person)),
           ],
           selectedItemColor: Colors.orange,
           currentIndex: _selectedPageIndex,
