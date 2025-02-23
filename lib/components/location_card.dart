@@ -25,12 +25,13 @@ class LocationCard extends StatelessWidget {
         child: Card(
           child: Column(
             children: [
-              Image.network(
-                locationImageUrl,
+              FadeInImage.assetNetwork(
+                placeholder: "assets/icon/logo.png",
+                image: locationImageUrl,
                 width: MediaQuery.of(context).size.width - 50,
                 height: 200,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
+                imageErrorBuilder: (context, error, stackTrace) {
                   return Container(
                     width: MediaQuery.of(context).size.width - 50,
                     height: 200,
