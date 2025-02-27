@@ -184,8 +184,7 @@ class _AnimatedSectionCardState extends State<AnimatedSectionCard>
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                // ignore: deprecated_member_use
-                color: Colors.black.withOpacity(0.1),
+                color: Color.fromRGBO(0, 0, 0, 0.1),
                 blurRadius: 10,
                 offset: Offset(0, 4),
               ),
@@ -283,8 +282,7 @@ class _AnimatedChipState extends State<AnimatedChip>
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                // ignore: deprecated_member_use
-                color: Colors.black.withOpacity(0.1),
+                color: Color.fromRGBO(0, 0, 0, 0.1),
                 blurRadius: 4,
                 offset: Offset(2, 2),
               ),
