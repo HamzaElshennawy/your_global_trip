@@ -100,16 +100,16 @@ class _AuthPageState extends State<AuthPage> {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
-                        color: Colors.grey
-                            .withOpacity(0.4), // Opacity applied here
+                        color: Color.fromRGBO(
+                            158, 158, 158, 0.4), // Opacity applied here
                         width: 1.5,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
-                        color:
-                            Colors.grey.withOpacity(0.6), // Darker when focused
+                        color: Color.fromRGBO(
+                            158, 158, 158, 0.6), // Darker when focused
                         width: 2,
                       ),
                     ),
@@ -128,14 +128,14 @@ class _AuthPageState extends State<AuthPage> {
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
-                          color: Colors.grey.withOpacity(0.4),
+                          color: Color.fromRGBO(158, 158, 158, 0.4),
                           width: 1.5,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
-                          color: Colors.grey.withOpacity(0.6),
+                          color: Color.fromRGBO(158, 158, 158, 0.6),
                           width: 2,
                         ),
                       ),
@@ -158,14 +158,14 @@ class _AuthPageState extends State<AuthPage> {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.4),
+                        color: Color.fromRGBO(158, 158, 158, 0.4),
                         width: 1.5,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.6),
+                        color: Color.fromRGBO(158, 158, 158, 0.6),
                         width: 2,
                       ),
                     ),
