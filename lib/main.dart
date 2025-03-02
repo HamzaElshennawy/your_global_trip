@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/pages/history_page.dart';
 import 'package:your_global_trip/pages/home_page.dart';
-import 'package:your_global_trip/pages/login_page.dart';
+import 'package:your_global_trip/pages/auth_page.dart';
 import 'package:your_global_trip/pages/saved_page.dart';
 import 'package:your_global_trip/pages/search_page.dart';
 import 'package:your_global_trip/providers/app_bar_theme.dart';

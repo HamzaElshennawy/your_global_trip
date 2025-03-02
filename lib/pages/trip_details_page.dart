@@ -36,12 +36,6 @@ class TripDetailsPage extends StatelessWidget {
               children: _buildChips(['1', '2', '3', '4', '5+']),
             ),
             SizedBox(height: 16),
-            AnimatedSectionCard(
-              title: 'Payment Methods',
-              delay: 800,
-              children:
-                  _buildChips(['Paypal', 'VISA', 'Visa Card', 'Mastercard']),
-            ),
           ],
         ),
       ),
@@ -178,6 +172,7 @@ class _AnimatedSectionCardState extends State<AnimatedSectionCard>
       child: FadeTransition(
         opacity: _fadeAnimation,
         child: Container(
+          width: MediaQuery.of(context).size.width - 30,
           margin: EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -193,7 +188,7 @@ class _AnimatedSectionCardState extends State<AnimatedSectionCard>
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   widget.title,
