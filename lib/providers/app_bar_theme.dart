@@ -6,7 +6,7 @@ class AppTheme {
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       backgroundColor: Color(0xFFFF7B26),
     ),
   );
@@ -16,7 +16,7 @@ class AppTheme {
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       backgroundColor: Color(0xFFFF7B26),
     ),
   );

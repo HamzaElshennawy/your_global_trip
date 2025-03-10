@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/pages/destination_page.dart';
 import 'package:your_global_trip/tiles/city_card.dart';
+import 'package:your_global_trip/tiles/custom_appbar.dart';
 import 'package:your_global_trip/tiles/search_tile.dart';
 import 'package:your_global_trip/tiles/location_card.dart'; // Import the new component
 
@@ -42,6 +43,9 @@ class HomePage extends StatelessWidget {
       ],
     ];
     return Scaffold(
+      appBar: CustomAppBar(
+        logoEnabled: true,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 20),

@@ -49,11 +49,11 @@ class DestinationPage extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppBar(
-        logoEnabled: false,
+        logoEnabled: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 24.0, left: 16, right: 16),
+          padding: const EdgeInsets.only(top: 10.0, left: 16, right: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
