@@ -11,6 +11,7 @@ class PlaceCard extends StatefulWidget {
 class _PlaceCardState extends State<PlaceCard>
     with SingleTickerProviderStateMixin {
   bool isExpanded = false;
+  bool wishListed = false;
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -36,6 +37,12 @@ class _PlaceCardState extends State<PlaceCard>
       } else {
         _controller.reverse();
       }
+    });
+  }
+
+  void addToWishList() {
+    setState(() {
+      wishListed = !wishListed;
     });
   }
 
@@ -91,7 +98,13 @@ class _PlaceCardState extends State<PlaceCard>
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w500),
                       ),
-                      Icon(Icons.bookmark_border),
+                      IconButton(
+                          onPressed: () {
+                            addToWishList();
+                          },
+                          icon: wishListed
+                              ? Icon(Icons.bookmark)
+                              : Icon(Icons.bookmark_border_outlined)),
                     ],
                   ),
                   SizedBox(height: 5),
@@ -236,7 +249,13 @@ class _PlaceCardState extends State<PlaceCard>
         children: [
           Icon(icon, size: 18),
           SizedBox(width: 5),
-          Text(text),
+          Expanded(
+            flex: 1,
+            child: Text(
+              text,
+              style: TextStyle(overflow: TextOverflow.ellipsis),
+            ),
+          ),
         ],
       ),
     );
