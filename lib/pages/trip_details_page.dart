@@ -11,7 +11,7 @@ class TripDetailsPage extends StatefulWidget {
 class _TripDetailsPageState extends State<TripDetailsPage> {
   String? _selectedDate;
   String? _selectedIndividuals;
-  String? _selectedKids;
+  String? _selectedChilds;
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +50,12 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
             ),
             const SizedBox(height: 16),
             AnimatedSectionCard(
-              title: 'Number of Kids',
+              title: 'Number of Childs',
               delay: 600,
               children: _buildChoiceChips(
-                  ['1', '2', '3', '4', '5+'], _selectedKids, (value) {
+                  ['0', '1', '2', '3', '4', '5+'], _selectedChilds, (value) {
                 setState(() {
-                  _selectedKids = value;
+                  _selectedChilds = value;
                 });
               }),
             ),

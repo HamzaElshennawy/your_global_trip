@@ -41,6 +41,11 @@ class HomePage extends StatelessWidget {
         "https://booking.yourglobaltrip.com/images/LXR/69 WEST1.jpg",
         "Float in a hot air balloon over the Nile and the west bank of Luxor at sunrise.",
       ],
+      [
+        "Luxor",
+        "https://booking.yourglobaltrip.com/images/LXR/69 WEST1.jpg",
+        "Float in a hot air balloon over the Nile and the west bank of Luxor at sunrise.",
+      ],
     ];
     return Scaffold(
       appBar: CustomAppBar(
@@ -60,7 +65,9 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 28),
                 ),
               ),
-              SearchTile(),
+              SearchTile(
+                onSearchPressed: () {},
+              ),
               Container(
                 margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
                 child: Text(

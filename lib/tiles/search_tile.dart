@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SearchTile extends StatefulWidget {
-  const SearchTile({super.key});
+  final VoidCallback onSearchPressed;
+  const SearchTile({required this.onSearchPressed, super.key});
 
   @override
   State<SearchTile> createState() => _SearchTileState();
@@ -190,11 +191,11 @@ class _SearchTileState extends State<SearchTile> {
                 onPressed:
                     (selectedDestination != null && selectedResort != null)
                         ? () {
-                            if (kDebugMode) {
-                              print("Search Pressed");
-                            }
+                            widget.onSearchPressed();
+                            print("pressed");
                           }
                         : null, // Disable button if no destination is selected
+
                 child: const Text(
                   'Search',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),

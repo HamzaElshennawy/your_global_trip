@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final bool? logoEnabled;
+  final double? elevation;
   const CustomAppBar({
     this.title,
     this.logoEnabled,
+    this.elevation,
     super.key,
   });
 
@@ -21,7 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       leadingWidth: 200,
-      elevation: 0,
+      elevation: elevation ?? 0,
       scrolledUnderElevation: 0,
     );
   }
