@@ -139,7 +139,10 @@ class _SearchPageState extends State<SearchPage>
                       )
                     : Column(
                         children: [
-                          Image.asset("assets/searchpageillus.png"),
+                          Image.asset(
+                            "assets/searchpageillus.png",
+                            height: MediaQuery.of(context).size.height * 0.4,
+                          ),
                           SizedBox(height: 20),
                           Text(
                             "Explore, Compare, Find",

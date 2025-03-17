@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_global_trip/main.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -35,6 +36,16 @@ class AuthPageState extends State<AuthPage> {
     );
   }
 
+  void _handleGoToHomePage() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MyApp(),
+        barrierDismissible: true,
+      ),
+    );
+  }
+
   void _handleAuth() {
     String username = usernameController.text.trim();
     String password = passwordController.text.trim();
@@ -64,169 +75,167 @@ class AuthPageState extends State<AuthPage> {
   }
 
   Widget _buildAuthScreen(String title, bool isLoginForm) {
-    return Center(
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            const SizedBox(height: 100), // Move logo higher
-            Center(
-              child: Image.asset(
-                "assets/planelogo.png",
-                height: 120,
-                width: 120,
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
+    return SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: deviceHeight - 300,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Prevents infinite height
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: deviceHeight * 0.1),
+              Center(
+                child: Image.asset(
+                  "assets/logoscaled.png",
+                  color: Colors.orange,
+                  height: deviceWidth * 0.4,
+                  //width: deviceHeight * 0.2,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
-            ),
-            const SizedBox(height: 50),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isLoginForm ? "Username" : "Full Name",
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+              const SizedBox(height: 50),
+              Text(
+                isLoginForm ? "Username" : "Full Name",
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: usernameController,
+                decoration: InputDecoration(
+                  hintText: isLoginForm
+                      ? "Enter your username"
+                      : "Enter your full name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+              ),
+              if (!isLoginForm) ...[
+                const SizedBox(height: 10),
+                const Text("Email",
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
                 TextField(
-                  controller: usernameController,
+                  controller: emailController,
+                  obscureText: false,
                   decoration: InputDecoration(
-                    hintText: isLoginForm
-                        ? "Enter your username"
-                        : "Enter your full name",
-                    enabledBorder: OutlineInputBorder(
+                    hintText: "Enter your email",
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(
-                            158, 158, 158, 0.4), // Opacity applied here
-                        width: 1.5,
-                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(
-                            158, 158, 158, 0.6), // Darker when focused
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                ),
-                if (!isLoginForm) ...[
-                  const SizedBox(height: 10),
-                  const Text(
-                    "Email",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      hintText: "Enter your email",
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(158, 158, 158, 0.4),
-                          width: 1.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(158, 158, 158, 0.6),
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-                const SizedBox(height: 20),
-                const Text(
-                  "Password",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: "Enter your password",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(158, 158, 158, 0.4),
-                        width: 1.5,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(158, 158, 158, 0.6),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _handleAuth,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      textStyle: const TextStyle(fontSize: 18),
-                    ),
-                    child: Text(title),
                   ),
                 ),
               ],
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: GestureDetector(
-                onTap: _switchPage,
-                child: Text(
-                  isLoginForm
-                      ? "Don’t have an account? Sign up"
-                      : "Already have an account? Login",
-                  style: const TextStyle(
-                      color: Colors.orange,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
+              const SizedBox(height: 20),
+              const Text("Password",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 10),
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Enter your password",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 30),
-              child: GestureDetector(
-                onTap: _switchPage,
-                child: RichText(
-                  text: TextSpan(
-                    text: "Continue as a ",
-                    children: [
-                      TextSpan(
-                        text: "Guest",
-                        style: const TextStyle(
+              const SizedBox(height: 30),
+              SizedBox(
+                width: deviceWidth - 20,
+                child: ElevatedButton(
+                  onPressed: _handleAuth,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
+                  child: Text(title),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: GestureDetector(
+                  onTap: _switchPage,
+                  child: isLoginForm
+                      ? RichText(
+                          text: TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: "Sign up",
+                                style: const TextStyle(
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : RichText(
+                          text: TextSpan(
+                            text: "Already have an account? ",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: "Login",
+                                style: const TextStyle(
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: GestureDetector(
+                  onTap: _handleGoToHomePage,
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Continue as a ",
+                      children: [
+                        TextSpan(
+                          text: "Guest",
+                          style: const TextStyle(
                             color: Colors.orange,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
-                    ],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );

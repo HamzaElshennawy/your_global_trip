@@ -286,8 +286,23 @@ class AnimatedHeaderState extends State<AnimatedHeader>
       position: _slideAnimation,
       child: FadeTransition(
         opacity: _fadeAnimation,
-        child: Text(
-          "Trip Details",
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Trip Details:",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Divider(
+                thickness: 0.5,
+              )
+            ],
+          ),
         ),
       ),
     );
