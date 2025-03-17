@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/tiles/custom_appbar.dart';
 
@@ -5,21 +7,63 @@ class TripDetailsPage extends StatefulWidget {
   const TripDetailsPage({super.key});
 
   @override
-  _TripDetailsPageState createState() => _TripDetailsPageState();
+  TripDetailsPageState createState() => TripDetailsPageState();
 }
 
-class _TripDetailsPageState extends State<TripDetailsPage> {
+typedef DestinationEntry = DropdownMenuEntry<Destination>;
+
+enum Destination {
+  cairo('Cairo'),
+  alex('Alex'),
+  hurghada('Hurghada'),
+  marsaala('Marsa Alam'),
+  aswan("Aswan");
+
+  const Destination(this.label);
+  final String label;
+
+  static final List<DestinationEntry> entries =
+      UnmodifiableListView<DestinationEntry>(
+    values.map<DestinationEntry>(
+      (Destination state) => DestinationEntry(
+        value: state,
+        label: state.label,
+        enabled: true,
+        style: ButtonStyle(
+          textStyle: WidgetStatePropertyAll(
+            TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+            ),
+          ),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+class TripDetailsPageState extends State<TripDetailsPage> {
   String? _selectedDate;
   String? _selectedIndividuals;
   String? _selectedChilds;
+  final TextEditingController destinationController = TextEditingController();
+  final TextEditingController personalRequestController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: CustomAppBar(
         logoEnabled: false,
       ),
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
         child: Column(
@@ -30,8 +74,12 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
             AnimatedSectionCard(
               title: 'Available Dates',
               delay: 200,
-              children: _buildChoiceChips(
-                  ['15/1', '20/1', '30/1'], _selectedDate, (value) {
+              children: _buildChoiceChips([
+                '15/1',
+                '20/1',
+                '30/1',
+                '15/1',
+              ], _selectedDate, (value) {
                 setState(() {
                   _selectedDate = value;
                 });
@@ -59,7 +107,101 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                 });
               }),
             ),
-            const SizedBox(height: 16),
+            AnimatedSectionCard(
+              delay: 800,
+              backgroundColor: Colors.transparent,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  width: screenWidth - 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: DropdownMenu<Destination>(
+                    initialSelection: null,
+                    width: screenWidth - 40,
+                    controller: destinationController,
+                    enableFilter: true,
+                    requestFocusOnTap: false,
+                    trailingIcon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      size: 32,
+                    ),
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                    ),
+                    hintText: "Select Hotel/ Pickup",
+                    inputDecorationTheme: InputDecorationTheme(
+                      hintStyle: TextStyle(
+                        fontSize: 18,
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[100]!,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+                    dropdownMenuEntries: Destination.entries,
+                    menuStyle: MenuStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.white),
+                      elevation: WidgetStatePropertyAll(8),
+                      shape: WidgetStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      padding: WidgetStatePropertyAll(
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            AnimatedSectionCard(
+              title: "Your room number/ personal request",
+              titleAlignment: CrossAxisAlignment.start,
+              backgroundColor: Colors.transparent,
+              delay: 1000,
+              padding: EdgeInsets.all(0),
+              hasDropShadow: false,
+              children: [
+                SizedBox(
+                  height: 150,
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.top,
+                    expands: true, // Expands to fill parent
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      fillColor: Colors.transparent,
+                      filled: true,
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 2.0,
+                        ), // Border color when focused
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
@@ -96,10 +238,10 @@ class AnimatedHeader extends StatefulWidget {
   const AnimatedHeader({super.key});
 
   @override
-  _AnimatedHeaderState createState() => _AnimatedHeaderState();
+  AnimatedHeaderState createState() => AnimatedHeaderState();
 }
 
-class _AnimatedHeaderState extends State<AnimatedHeader>
+class AnimatedHeaderState extends State<AnimatedHeader>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
@@ -153,18 +295,30 @@ class _AnimatedHeaderState extends State<AnimatedHeader>
 }
 
 class AnimatedSectionCard extends StatefulWidget {
-  final String title;
+  final String? title;
   final List<Widget> children;
   final int delay;
+  final Color backgroundColor;
+  final CrossAxisAlignment titleAlignment;
+  final EdgeInsets padding;
+  final bool hasDropShadow;
 
-  const AnimatedSectionCard(
-      {super.key, required this.title, required this.children, this.delay = 0});
+  const AnimatedSectionCard({
+    super.key,
+    this.title,
+    required this.children,
+    this.delay = 0,
+    this.backgroundColor = Colors.white,
+    this.titleAlignment = CrossAxisAlignment.center,
+    this.padding = const EdgeInsets.all(16.0),
+    this.hasDropShadow = true,
+  });
 
   @override
-  _AnimatedSectionCardState createState() => _AnimatedSectionCardState();
+  AnimatedSectionCardState createState() => AnimatedSectionCardState();
 }
 
-class _AnimatedSectionCardState extends State<AnimatedSectionCard>
+class AnimatedSectionCardState extends State<AnimatedSectionCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
@@ -215,30 +369,35 @@ class _AnimatedSectionCardState extends State<AnimatedSectionCard>
           width: MediaQuery.of(context).size.width - 30,
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: widget.backgroundColor,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.1),
-                blurRadius: 10,
-                offset: Offset(0, 4),
-              ),
-            ],
+            boxShadow: widget.hasDropShadow
+                ? const [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.1),
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ]
+                : null,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:
+                widget.title != null ? widget.padding : const EdgeInsets.all(0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: widget.titleAlignment,
               children: [
-                Text(
-                  widget.title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 12),
+                widget.title != null
+                    ? Text(
+                        widget.title!,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      )
+                    : SizedBox(),
+                widget.title != null ? const SizedBox(height: 12) : SizedBox(),
                 Column(
                   children: widget.children,
                 ),

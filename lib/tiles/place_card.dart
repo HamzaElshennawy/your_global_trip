@@ -5,10 +5,10 @@ class PlaceCard extends StatefulWidget {
   const PlaceCard({super.key});
 
   @override
-  _PlaceCardState createState() => _PlaceCardState();
+  PlaceCardState createState() => PlaceCardState();
 }
 
-class _PlaceCardState extends State<PlaceCard>
+class PlaceCardState extends State<PlaceCard>
     with SingleTickerProviderStateMixin {
   bool isExpanded = false;
   bool wishListed = false;

@@ -192,7 +192,9 @@ class _SearchTileState extends State<SearchTile> {
                     (selectedDestination != null && selectedResort != null)
                         ? () {
                             widget.onSearchPressed();
-                            print("pressed");
+                            if (kDebugMode) {
+                              print("pressed");
+                            }
                           }
                         : null, // Disable button if no destination is selected
 
