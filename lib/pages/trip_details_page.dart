@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:your_global_trip/pages/adult_details_page.dart';
 import 'package:your_global_trip/tiles/custom_appbar.dart';
 
 class TripDetailsPage extends StatefulWidget {
@@ -64,6 +65,46 @@ class TripDetailsPageState extends State<TripDetailsPage> {
         logoEnabled: false,
       ),
       backgroundColor: Colors.white,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AdultDetailsPage(),
+            ),
+          );
+        },
+        child: Container(
+          width: 150,
+          height: 50,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.orange,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Next",
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Icon(
+                  Icons.arrow_forward,
+                  size: 24,
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
         child: Column(
