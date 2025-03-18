@@ -37,11 +37,28 @@ class LocationCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            Image.asset(
-              'assets/location.png',
+            FadeInImage.assetNetwork(
+              placeholder: "assets/icon/logo.png",
+              image: locationImageUrl,
               width: MediaQuery.of(context).size.width,
               height: 250,
               fit: BoxFit.fill,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [
+                    0.3,
+                    1,
+                  ],
+                  colors: [
+                    Colors.transparent,
+                    Color(0xBB000000),
+                  ],
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10.0, bottom: 10),
@@ -58,6 +75,7 @@ class LocationCard extends StatelessWidget {
                       locationDescription,
                       style: TextStyle(
                         fontSize: 24,
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
@@ -72,6 +90,7 @@ class LocationCard extends StatelessWidget {
                         locationName,
                         style: TextStyle(
                           fontSize: 18,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),

@@ -13,37 +13,32 @@ class HomePage extends StatelessWidget {
     var locations = [
       [
         "Hurghada",
-        "https://booking.yourglobaltrip.com/images/HRG/2 HRG GIFT.jpg",
+        "https://booking.yourglobaltrip.com/images/HRG/2%20HRG%20GIFT.jpg",
         "Get to know the city and its areas. Dinner is included.",
       ],
       [
         "Marsa Alam",
-        "https://booking.yourglobaltrip.com/images/RMF/28 RMF SATA.jpg",
+        "https://booking.yourglobaltrip.com/images/RMF/28%20RMF%20SATA.jpg",
         "Experience the local atmosphere in one of the oldest Red Sea towns. The town was part of the old pilgrim route to Mecca.",
       ],
       [
         "Sharm Al-Sheikh",
-        "https://booking.yourglobaltrip.com/images/SSH/46 SSH CIT2.jpg",
+        "https://booking.yourglobaltrip.com/images/SSH/46%20SSH%20CIT2.jpg",
         "Get to know the city and its areas. Your guide will show you places of interest and landmarks in Sharm.",
       ],
       [
         "Aswan",
-        "https://booking.yourglobaltrip.com/images/ASW/80 NUBIAN.jpg",
+        "https://booking.yourglobaltrip.com/images/ASW/80%20NUBIAN.jpg",
         "A half-day visit in Aswan to the Philae Temple, the High Dam and the unfinished obelisk at the granite quarry. ",
       ],
       [
         "Cairo",
-        "https://booking.yourglobaltrip.com/images/CAI/83 CAI SOPY.jpg",
+        "https://booking.yourglobaltrip.com/images/CAI/83%20CAI%20SOPY.jpg",
         "Evening tour to the Sound & Light show by the Pyramids of Giza including transport, and entry fees.",
       ],
       [
         "Luxor",
-        "https://booking.yourglobaltrip.com/images/LXR/69 WEST1.jpg",
-        "Float in a hot air balloon over the Nile and the west bank of Luxor at sunrise.",
-      ],
-      [
-        "Luxor",
-        "https://booking.yourglobaltrip.com/images/LXR/69 WEST1.jpg",
+        "https://booking.yourglobaltrip.com/images/LXR/69%20WEST1.jpg",
         "Float in a hot air balloon over the Nile and the west bank of Luxor at sunrise.",
       ],
     ];
