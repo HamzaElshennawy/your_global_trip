@@ -119,7 +119,7 @@ class TripDetailsPageState extends State<TripDetailsPage> {
                 '15/1',
                 '20/1',
                 '30/1',
-                '15/1',
+                '03/2',
               ], _selectedDate, (value) {
                 setState(() {
                   _selectedDate = value;

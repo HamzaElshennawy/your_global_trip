@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_global_trip/pages/destination_page.dart';
+import 'package:your_global_trip/pages/search_page.dart';
 import 'package:your_global_trip/tiles/city_card.dart';
 import 'package:your_global_trip/tiles/custom_appbar.dart';
 import 'package:your_global_trip/tiles/search_tile.dart';
@@ -61,7 +62,14 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SearchTile(
-                onSearchPressed: () {},
+                onSearchPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchPage(),
+                    ),
+                  );
+                },
               ),
               Container(
                 margin: EdgeInsets.only(top: 10, left: 15, bottom: 5),
